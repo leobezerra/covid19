@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "Analisando os dados da COVID-19",
-            "content": "Usando contagem de ocorr&#234;ncias em valores absolutos . Casos confirmados por dia . . . Casos confirmados em dias desde o primeiro caso . . . Casos confirmados desde o primeiro dia com 100 casos confirmados . . . Normalizando os dados em rela&#231;&#227;o ao tamanho da popula&#231;&#227;o . Casos confirmados por dia . . . Casos confirmados em dias desde o primeiro caso . . . Casos confirmados desde o primeiro dia com 100 casos confirmados . . .",
+            "content": "Usando contagem de ocorr&#234;ncias em valores absolutos . Casos confirmados por dia . . . Casos confirmados em dias desde o primeiro caso . . . Casos confirmados desde o primeiro dia com 100 casos confirmados . . . Normalizando os dados em rela&#231;&#227;o ao tamanho da popula&#231;&#227;o . Casos confirmados por 100 mil habitantes por dia . . . Casos confirmados por 100 mil habitantes em dias desde o primeiro caso . . . Casos confirmados por 100 mil habitantes desde o primeiro dia com 100 casos confirmados . . .",
             "url": "https://leobezerra.github.io/covid19/colab/2020/03/23/covid19.html",
             "relUrl": "/colab/2020/03/23/covid19.html",
             "date": " • Mar 23, 2020"
