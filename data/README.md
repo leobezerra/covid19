@@ -18,6 +18,6 @@ A partir do dia 29/03/2020, a extração passou a ser feita de forma automatizad
 ## Erratas:
 
 - 29/03/2020
- - Um caso suspeito no município de Santana do Matos relatado no boletim número 13 (24/03/2020) não havia sido identificado pela coleta manual de dados.
- - Um caso confirmado no município de Monte Alegre e um no município de Passa-e-fica relatados no boletim número 18 (28/03/2020) haviam sido incluídos apenas no arquivo de séries tempoaris.
- - extração do boletim número 17 (28/03/2020) havia sido erroneamente relatada como sendo do boletim número 16 (27/03/2020).
+ . Um caso suspeito no município de Santana do Matos relatado no boletim número 13 (24/03/2020) não havia sido identificado pela coleta manual de dados.
+ . Um caso confirmado no município de Monte Alegre e um no município de Passa-e-fica relatados no boletim número 18 (28/03/2020) haviam sido incluídos apenas no arquivo de séries tempoaris.
+ . extração do boletim número 17 (28/03/2020) havia sido erroneamente relatada como sendo do boletim número 16 (27/03/2020).
