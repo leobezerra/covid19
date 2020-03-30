@@ -29,9 +29,9 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     data = data.iloc[:-1,]
 
     if not all(sum(data_checksum[feature]) == total[feature] for feature in ["confirmado", "suspeito"]):
+        print("Atenção! O total raspado não condiz com o total informado no boletim!")
         for feature in ["confirmado", "suspeito"]:
-            print(sum(data_checksum[feature]), total[feature])
-        exit()
+            print(f"{feature}: {sum(data_checksum[feature])} (raspado), {total[feature]} (boletim)")
 
     # fix multirow lines
     drop_lines = []
@@ -48,6 +48,8 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     data.loc[data["municipio"] == "Governado Dix-Sep Rosado", "municipio"] = "Governador Dix-Sept Rosado"
     data.loc[data["municipio"] == "Lagoa d’Anta", "municipio"] = "Lagoa d'Anta"
     data.loc[data["municipio"] == "Santana dos Matos", "municipio"] = "Santana do Matos"
+    if "Assú" in data["municipio"].unique():
+        data.loc[data["municipio"] == "Assú", "municipio"] = "Açu"
 
     # verifying against manually collected data
     data["confirmado"] = data["confirmado"].astype(int)
@@ -61,9 +63,10 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
         df_old = pd.read_csv(f"{base_url}/{date}.csv").query("suspeito > 0 or confirmado > 0")
         data_mun = set(data["municipio"].unique())
         old_mun = set(df_old["municipio"].unique())
+        print("Atenção! Os municípios raspados e de referência não batem")
         if data_mun != old_mun:
-            print("Not in the CSV file: ", data_mun - old_mun)
-            print("Not in the scraped data: ", old_mun - data_mun)
+            print("Não estão no CSV de referência: ", data_mun - old_mun)
+            print("Não estão nos dados raspados: ", old_mun - data_mun)
             exit()
         for m in df_old.municipio:
             if df_old[df_old['municipio'] == m]['confirmado'].iloc[0] != data[data['municipio'] == m]['confirmado'].iloc[0]:
@@ -93,10 +96,11 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
 
 if __name__ == "__main__":
     data = [
-           {"date": "03-24-2020", "first_page": 9, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227775.PDF"},
-           {"date": "03-25-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227985.PDF"},
-           {"date": "03-27-2020", "first_page": 9, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228049.PDF"},
-           {"date": "03-28-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228113.PDF"},
+           # {"date": "03-24-2020", "first_page": 9, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227775.PDF"},
+           # {"date": "03-25-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227985.PDF"},
+           # {"date": "03-27-2020", "first_page": 9, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228049.PDF"},
+           # {"date": "03-28-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228113.PDF"},
+           {"date": "03-28-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
            ]
             
     base_url = "rn_covid_19_boletins"
