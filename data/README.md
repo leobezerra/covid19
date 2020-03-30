@@ -30,3 +30,4 @@ No momento, o parser desenvolvido raspa os casos suspeitos e confirmados apresen
  . Um caso confirmado no município de Monte Alegre e um no município de Passa-e-fica relatados no boletim número 18 (28/03/2020) haviam sido incluídos apenas no arquivo de séries tempoaris.
  . Casos suspeitos do município de São Gonçalo do Amarante relatados no boletim número 16 (27/03/2020) não haviam sido identificados pela coleta manual de dados.
  . Extração do boletim número 17 (28/03/2020) havia sido erroneamente relatada como sendo do boletim número 16 (27/03/2020).
+ . Extração do boletim número 15 (25/03/2020) havia sido erroneamente relatado como sendo do dia 26/03/2020.
