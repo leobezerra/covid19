@@ -28,4 +28,5 @@ No momento, o parser desenvolvido raspa os casos suspeitos e confirmados apresen
 - 29/03/2020
  . Um caso suspeito no município de Santana do Matos relatado no boletim número 13 (24/03/2020) não havia sido identificado pela coleta manual de dados.
  . Um caso confirmado no município de Monte Alegre e um no município de Passa-e-fica relatados no boletim número 18 (28/03/2020) haviam sido incluídos apenas no arquivo de séries tempoaris.
- . extração do boletim número 17 (28/03/2020) havia sido erroneamente relatada como sendo do boletim número 16 (27/03/2020).
+ . Casos suspeitos do município de São Gonçalo do Amarante relatados no boletim número 16 (27/03/2020) não haviam sido identificados pela coleta manual de dados.
+ . Extração do boletim número 17 (28/03/2020) havia sido erroneamente relatada como sendo do boletim número 16 (27/03/2020).
