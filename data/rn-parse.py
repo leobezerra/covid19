@@ -1,12 +1,10 @@
 import sys
 import os
-import requests
 from datetime import datetime
 
+import requests
 import pyuca
 import pandas as pd
-import numpy as np
-from bs4 import BeautifulSoup
 from tabula import read_pdf
 
 def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=False):
