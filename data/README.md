@@ -15,6 +15,14 @@ A partir do dia 29/03/2020, a extração passou a ser feita de forma automatizad
 - [gabicavalcante](https://github.com/gabicavalcante): autoria
 - [leobezerra](https://github.com/leobezerra): revisão e validação
 
+## Informações sobre o parser
+
+No momento, o parser desenvolvido raspa os casos suspeitos e confirmados apresentados na Tabela 1. Adicionalmente, o parser pode adicionar coordenadas geográficas ao CSV produzido.
+
+- script: `data/rn-parser.py`
+- dependências: `data/requirements.py`
+- arquivo base de coordenadas: data/coordenadas-rn.csv
+
 ## Erratas:
 
 - 29/03/2020
