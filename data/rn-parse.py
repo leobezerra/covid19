@@ -100,7 +100,7 @@ if __name__ == "__main__":
            # {"date": "03-25-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227985.PDF"},
            # {"date": "03-27-2020", "first_page": 9, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228049.PDF"},
            # {"date": "03-28-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228113.PDF"},
-           {"date": "03-28-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
+           {"date": "03-30-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
            ]
             
     base_url = "rn_covid_19_boletins"
