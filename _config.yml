@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: fastpages
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+title: Análise da COVID-19
+description: Dashboards de visualização para análise da evolução da COVID-19 no RN, no Brasil e no mundo.
 github_username: leobezerra
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "covid19"
@@ -69,7 +69,7 @@ include:
 # This specifies what badges are turned on by default for notebook posts.
 default_badges:
   github: true
-  binder: true
+  binder: false
   colab: true
 
 # Everything below here should be left alone. Modifications may break fastpages
