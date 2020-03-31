@@ -39,8 +39,8 @@
 
   
       ,"page1": {
-          "title": "About Me",
-          "content": "This is where you put the contents of your About page. Like all your pages, it’s in Markdown format. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "title": "About the project",
+          "content": "Os dashboards de análise da COVID-19 fornecidos neste site são um projeto colaborativo organizado por Leonardo Bezerra, junto à comunidade de ciência de dados do Instituto Metrópole Digital, do Rio Grande do Norte e do Brasil. . Para contribuir, entre em contato por um dos seguintes canais: . Email: leobezerra@imd.ufrn.br | Telegram: @leo_bezerra | . . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://leobezerra.github.io/covid19/about/",
           "relUrl": "/about/",
           "date": ""
