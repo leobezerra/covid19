@@ -25,6 +25,9 @@ No momento, o parser desenvolvido raspa os casos suspeitos e confirmados apresen
 
 ## Erratas:
 
+- 31/03/2020
+ . Os dados importados não estão sendo contabilizados. Correção em breve.
+
 - 29/03/2020
  . Um caso suspeito no município de Santana do Matos relatado no boletim número 13 (24/03/2020) não havia sido identificado pela coleta manual de dados.
  . Um caso confirmado no município de Monte Alegre e um no município de Passa-e-fica relatados no boletim número 18 (28/03/2020) haviam sido incluídos apenas no arquivo de séries tempoaris.
