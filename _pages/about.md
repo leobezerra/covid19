@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About the project
+title: Sobre o projeto
 permalink: /about/
 ---
 
-Os dashboards de análise da COVID-19 fornecidos neste site são um projeto colaborativo organizado por [Leonardo Bezerra](https://leobezerra.info), junto à comunidade de ciência de dados do [Instituto Metrópole Digital](https://imd.ufrn.br), do Rio Grande do Norte e do Brasil.
+Os dashboards de análise da COVID-19 disponibilizados neste site são um projeto colaborativo organizado por [Leonardo Bezerra](https://leobezerra.info), junto à comunidade de ciência de dados do [Instituto Metrópole Digital](https://imd.ufrn.br), do [Rio Grande do Norte](https://t.me/cienciadedadosRN) e do Brasil.
 
 Para contribuir, entre em contato por um dos seguintes canais:
 - Email: [leobezerra@imd.ufrn.br](mailto:leobezerra@imd.ufrn.br)
