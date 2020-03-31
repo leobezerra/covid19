@@ -36,9 +36,9 @@ Os dados georeferenciados foram obtidos do [IBGE](https://ibge.gov.br) e do [Arc
 
 ## Atualização dos posts
 
-[gabrielqap](https://github.com/gabrielqap) Analisando os dados da COVID-19 pelo mundo
-[vitor-saldanha](https://github.com/vitor-saldanha) Analisando os dados da COVID-19 pelo mundo
-[leobezerra](https://github.com/leobezerra) Analisando os dados da COVID-19 pelo mundo
+* [[gabrielqap]](https://github.com/gabrielqap) Analisando os dados da COVID-19 pelo mundo
+* [[vitor-saldanha]](https://github.com/vitor-saldanha) Analisando os dados da COVID-19 pelo mundo
+* [[leobezerra]](https://github.com/leobezerra) Analisando os dados da COVID-19 pelo mundo
 
 ---
 This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
