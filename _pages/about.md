@@ -12,7 +12,7 @@ Para contribuir, entre em contato por um dos seguintes canais:
 
 ## Origem dos dados
 
-Os [dados disponíveis nesta página](https://github.com/leobezerra/covid19/tree/master/data) foram obtidos de diferentes fontes.
+Os dados utilizados para esta análise foram obtidos de diferentes fontes.
 
 ### Dados mundiais
 - COVID-19: [John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
@@ -23,6 +23,9 @@ Os [dados disponíveis nesta página](https://github.com/leobezerra/covid19/tree
 - Dados georeferenciados: [IBGE](https://ibge.gov.br) 
 
 ### Dados do RN
+
+Todos os dados utilizados para análise do RN estão disponíveis [nesta página](https://github.com/leobezerra/covid19/tree/master/data).
+
 Os dados da COVID-19 RN foram extraídos dos boletins epidemiológicos divulgados pela [SESAP-RN](https://saude.rn.gov.br). A extração deve ser creditada a:
 - [brasil.io](https://brasil.io): casos confirmados até 24/03/2020
 - [vitor-saldanha](https://github.com/vitor-saldanha): casos suspeitos até 24/03/2020
