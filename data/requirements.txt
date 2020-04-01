@@ -1,4 +1,4 @@
 pandas==1.0.3
 pyuca==1.2
-requests==2.21.0 
-camelot-py[cv]
+requests==2.21.0
+tabula-py==2.1.0
