@@ -73,7 +73,6 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
         for feature in ["confirmado", "suspeito"]:
             print(f"{feature}: {sum(data_rn[feature])} (raspado), {total_rn[feature]} (boletim)")
     
-    # aggregating all cases back
     data = data_rn.reset_index(drop=True)
     
     # fixing city names
@@ -130,6 +129,7 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     df_municipios = pd.DataFrame(sorted(data["municipio"], key=coll.sort_key), columns=["mun"])
     data = pd.merge(df_municipios, data, left_on="mun", right_on="municipio").drop("mun", axis=1)
 
+    # aggregating all cases back
     data = pd.concat([data, data_importados]).reset_index(drop=True)
     data.iloc[-1,1] = datetime.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d") 
 
