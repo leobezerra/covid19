@@ -1,5 +1,3 @@
-import sys
-import os
 from datetime import datetime
 
 import requests
@@ -75,8 +73,7 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
         for feature in ["confirmado", "suspeito"]:
             print(f"{feature}: {sum(data_rn[feature])} (raspado), {total_rn[feature]} (boletim)")
     
-    # aggregating all cases back
-    data = pd.concat([data_rn, data_importados]).reset_index(drop=True)
+    data = data_rn.reset_index(drop=True)
     
     # fixing city names
     data.loc[data["municipio"] == "Augusto Severo", "municipio"] = "Campo Grande"
@@ -117,8 +114,9 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
         print("Atenção! Os municípios raspados e do arquivo de coordenadas não batem")
         print("- Não estão no CSV de coordenadas: ", data_mun - coord_mun)
         print("- Não estão nos dados raspados: ", coord_mun - data_mun)
-        
-        data = pd.merge(data, coord_rn, how="right").fillna(0)
+
+        data = pd.merge(data, coord_rn, how="right").fillna(0) 
+
         data["confirmado"] = data["confirmado"].astype(int)
         data["suspeito"] = data["suspeito"].astype(int)
 
@@ -131,6 +129,10 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     df_municipios = pd.DataFrame(sorted(data["municipio"], key=coll.sort_key), columns=["mun"])
     data = pd.merge(df_municipios, data, left_on="mun", right_on="municipio").drop("mun", axis=1)
 
+    # aggregating all cases back
+    data = pd.concat([data, data_importados]).reset_index(drop=True)
+    data.iloc[-1,1] = datetime.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d") 
+
     # persisting
     data.to_csv(f"{date}.csv", index=False)
 
@@ -142,9 +144,9 @@ if __name__ == "__main__":
            # {"date": "03-27-2020", "first_page": 9, "last_page": 12, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228049.PDF"},
            # {"date": "03-28-2020", "first_page": 8, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228113.PDF"},
            # {"date": "03-30-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
-           # {"date": "04-01-2020", "first_page": 8, "last_page": 13, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228342.PDF"},           
-           ]
-            
+           # {"date": "04-01-2020", "first_page": 8, "last_page": 13, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228342.PDF"},        
+    ]
+
     base_url = "rn_covid_19_boletins"
     for pair in data:
         date, first_page, last_page, bulletin_url = pair.values()
