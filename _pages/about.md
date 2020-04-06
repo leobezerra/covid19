@@ -18,7 +18,7 @@ Os dados utilizados para esta análise foram obtidos de diferentes fontes.
 - COVID-19: [John Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19)
 - População mundial: [Penn World Table](https://www.rug.nl/ggdc/productivity/pwt/)
 
-### Dados do Brasil
+### Dados do Brasil e do Nordeste
 - COVID-19 e população estimada: [brasil.io](https://brasil.io)
 - Dados georeferenciados: [IBGE](https://ibge.gov.br) 
 
@@ -39,9 +39,10 @@ Os dados georeferenciados foram obtidos do [IBGE](https://ibge.gov.br) e do [Arc
 
 ## Atualização dos posts
 
-* [[gabrielqap]](https://github.com/gabrielqap) Analisando os dados da COVID-19 pelo mundo
-* [[vitor-saldanha]](https://github.com/vitor-saldanha) Visualizando os casos de COVID-19 no RN
-* [[leobezerra]](https://github.com/leobezerra) Como o COVID-19 avançou no Brasil e no mundo
+* [[gabrielqap]](https://github.com/gabrielqap) Visualizando a COVID-19 no mundo
+* [[leobezerra]](https://github.com/leobezerra) Visualizando a COVID-19 no Brasil
+* [[isisgo]](https://github.com/isisgo) Visualizando a COVID-19 no Nordeste
+* [[vitor-saldanha]](https://github.com/vitor-saldanha) Visualizando a COVID-19 no RN
 
 ---
 This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
