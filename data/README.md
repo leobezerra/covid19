@@ -24,7 +24,10 @@ No momento, o parser desenvolvido raspa os casos suspeitos e confirmados apresen
 - arquivo base de coordenadas: data/coordenadas-rn.csv
 
 ## Erratas:
-
+- 05/04/2020
+ . Os dados referentes ao município de Acari no boletim de 05/04/2020 não estão sendo extraídos pelo raspador. O dado foi extraído manualmente e uma issue foi criada para resolver este problema. 
+- 03/04/2020
+ . Os dados importados passaram a ser contabilizados. Todos os arquivos foram atualizados.
 - 31/03/2020
  . Os dados importados não estão sendo contabilizados. Correção em breve.
 
