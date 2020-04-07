@@ -9,23 +9,34 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     # request to find the documents
     pdf = requests.get(bulletin_url)
     open('bulletin.pdf', 'wb').write(pdf.content)
-    new_format = datetime.strptime(date, "%m-%d-%Y") >= datetime.strptime("04-01-2020", "%m-%d-%Y") 
-
+    new_format = datetime.strptime("04-01-2020", "%m-%d-%Y") <= datetime.strptime(date, "%m-%d-%Y") <= datetime.strptime("04-03-2020", "%m-%d-%Y")
+    
     # parse DataFrame from pdf
     dfs = read_pdf("bulletin.pdf", stream=True, pages=list(range(first_page, last_page + 1)))
     columns = ['municipio', 'suspeito', 'confirmado']
 
-    skip = 1 if new_format else 2
+    if datetime.strptime(date, "%m-%d-%Y") > datetime.strptime("04-03-2020", "%m-%d-%Y"):
+        skip = 0
+    elif datetime.strptime(date, "%m-%d-%Y") >= datetime.strptime("04-01-2020", "%m-%d-%Y"):
+        skip = 1
+    else:
+        skip = 2
     data = pd.concat(pd.DataFrame(df.iloc[skip:,[0,1,-1]].replace("-",0).values, columns=columns) 
                      for df in dfs if df.shape[1] in [4,5])
-    data = data[data["municipio"] != "RESIDÊNCIA"]
+    data = data.query("not municipio in ['RESIDÊNCIA', 'MUNICÍPIO DE RESIDÊNCIA']")
+    data = data.dropna(how='all')
     data = data.reset_index(drop=True)
 
     # isolating local from imported cases
-    total_rn_idx = data[data["municipio"] == "RN"].index.tolist()
+    if datetime.strptime(date, "%m-%d-%Y") <= datetime.strptime("04-03-2020", "%m-%d-%Y"):
+        total_rn_idx = data[data["municipio"] == "RN"].index.tolist()
+    else:
+        importados = data[data["municipio"].str.contains(" - ").fillna(False)]
+        total_rn_idx = importados.index.tolist()
+        total_rn_idx[0] -= 1
     data_rn = data.loc[:total_rn_idx[0],]
     data_importados = data.loc[total_rn_idx[0] + 1:,]
-
+    
     # fixing multirow lines from imported cases
     for index, row in data_importados[data_importados['municipio'].isna()].iterrows():
         data_importados.at[index-1, 'municipio'] = ' '.join(data_importados.loc[[index-1, index+1], "municipio"])
@@ -65,13 +76,18 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     # verifying local cases match
     data_rn["confirmado"] = data_rn["confirmado"].astype(int)
     data_rn["suspeito"] = data_rn["suspeito"].astype(int)
-    total_rn = data_rn.iloc[-1,]
-    data_rn = data_rn.iloc[:-1,]
+
+#    for feature in ["confirmado", "suspeito"]:
+#        print(f"{feature}: {sum(data_rn[feature])} (raspado)")
     
-    if not all(sum(data_rn[feature]) == total_rn[feature] for feature in ["confirmado", "suspeito"]):
-        print("Atenção (casos locais)! O total raspado não condiz com o total informado no boletim!")
-        for feature in ["confirmado", "suspeito"]:
-            print(f"{feature}: {sum(data_rn[feature])} (raspado), {total_rn[feature]} (boletim)")
+    if any(data_rn["municipio"] == "RN"):
+        total_rn = data_rn.iloc[-1,]
+        data_rn = data_rn.iloc[:-1,]
+    
+        if not all(sum(data_rn[feature]) == total_rn[feature] for feature in ["confirmado", "suspeito"]):
+            print("Atenção (casos locais)! O total raspado não condiz com o total informado no boletim!")
+            for feature in ["confirmado", "suspeito"]:
+                print(f"{feature}: {sum(data_rn[feature])} (raspado), {total_rn[feature]} (boletim)")
     
     data = data_rn.reset_index(drop=True)
     
@@ -88,23 +104,6 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     # verifying against manually collected data
     data = data.query("suspeito > 0 or confirmado > 0")
     data = data.reset_index(drop=True)
-
-    # checking against existing CSVs
-    base_url = "https://raw.githubusercontent.com/leobezerra/covid19/master/data/rn_covid_19_boletins"
-    if check:
-        df_old = pd.read_csv(f"{base_url}/{date}.csv").query("suspeito > 0 or confirmado > 0")
-        data_mun = set(data["municipio"].unique())
-        old_mun = set(df_old["municipio"].unique())
-        if data_mun != old_mun:
-            print("Atenção! Os municípios raspados e de referência não batem")
-            print("- Não estão no CSV de referência: ", data_mun - old_mun)
-            print("- Não estão nos dados raspados: ", old_mun - data_mun)
-            exit()
-        for m in df_old.municipio:
-            if df_old[df_old['municipio'] == m]['confirmado'].iloc[0] != data[data['municipio'] == m]['confirmado'].iloc[0]:
-                print(m)
-                print(df_old[df_old['municipio'] == m]['confirmado'].iloc[0], data[data['municipio'] == m]['confirmado'].iloc[0])
-                exit()
     
     # adding latitude and longitude data
     if coord:
@@ -133,6 +132,23 @@ def parse(bulletin_url, first_page, last_page, check=None, date=None, coord=Fals
     data = pd.concat([data, data_importados]).reset_index(drop=True)
     data.iloc[-1,1] = datetime.strptime(date, "%m-%d-%Y").strftime("%Y-%m-%d") 
 
+    # checking against existing CSVs
+    base_url = "https://raw.githubusercontent.com/leobezerra/covid19/master/data/rn_covid_19_boletins"
+    if check:
+        df_old = pd.read_csv(f"{base_url}/{date}.csv").query("suspeito > 0 or confirmado > 0")
+        data_mun = set(data["municipio"].unique())
+        old_mun = set(df_old["municipio"].unique())
+        if data_mun != old_mun:
+            print("Atenção! Os municípios raspados e de referência não batem")
+            print("- Não estão no CSV de referência: ", data_mun - old_mun)
+            print("- Não estão nos dados raspados: ", old_mun - data_mun)
+            exit()
+        for m in df_old.municipio:
+            if df_old[df_old['municipio'] == m]['confirmado'].iloc[0] != data[data['municipio'] == m]['confirmado'].iloc[0]:
+                print(m)
+                print(df_old[df_old['municipio'] == m]['confirmado'].iloc[0], data[data['municipio'] == m]['confirmado'].iloc[0])
+                exit()
+                
     # persisting
     data.to_csv(f"{date}.csv", index=False)
 
@@ -143,8 +159,10 @@ if __name__ == "__main__":
            # {"date": "03-25-2020", "first_page": 8, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000227985.PDF"},
            # {"date": "03-27-2020", "first_page": 9, "last_page": 12, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228049.PDF"},
            # {"date": "03-28-2020", "first_page": 8, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228113.PDF"},
-           # {"date": "03-30-2020", "first_page": 8, "last_page": 10, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
-           # {"date": "04-01-2020", "first_page": 8, "last_page": 13, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228342.PDF"},        
+           {"date": "03-30-2020", "first_page": 8, "last_page": 11, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228171.PDF"},
+           # {"date": "04-01-2020", "first_page": 8, "last_page": 13, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228342.PDF"},
+           # {"date": "04-02-2020", "first_page": 8, "last_page": 13, "bulletin": "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228478.PDF"},
+           # {"date": "04-05-2020", "first_page": 4, "last_page": 8, "bulletin":  "http://www.adcon.rn.gov.br/ACERVO/sesap/DOC/DOC000000000228660.PDF"},
     ]
 
     base_url = "rn_covid_19_boletins"
