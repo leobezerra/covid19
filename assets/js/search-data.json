@@ -4,9 +4,9 @@
         "post0": {
             "title": "Visualizando a COVID-19 na América do Sul",
             "content": "Caso esteja visualizando este post em um dispositivo móvel, por favor utilize seu dispositivo na horizontal. . Este post reúne análises das ocorrências de COVID-19 nos países da América do Sul. Os dados utilizados para análise são fornecidos pelo Universidade John Hopkins. A análise inicial apresenta diferentes métricas, tanto absolutas (confirmados, mortes e recuperados) quanto relativas (confirmados, mortes e recuperados por 1 milhão de habitantes). Além disso, apresentamos a análise por dia, em dias decorridos desde o primeiro caso e em dias decorridos desde o centésimo caso. . Sempre que alternar entre tipos de condição (confirmado, morte ou recuperado), clique duas vezes na área principal do gráfico para que o zoom se ajuste (a área principal do gráfico tem pano de fundo quadriculado). . A análise final se concentra em casos confirmados e usa georeferenciamento para visualizar a trajetória do vírus pela América do Sul. No mapa, é possível visualizar informações sobre cada localidade passando o mouse por cima do país desejado. . É possível animar a linha do tempo da evolução dos casos apertando o botão play, ou visualizar uma data específica usando o slider. . Em cada gráfico, várias outras opções de interação estão disponíveis, podendo ser exploradas pelo menu que aparece no canto superior direito de cada um. . Evolu&#231;&#227;o e est&#225;gio atual . Casos por dia . . . Casos em dias desde o primeiro caso confirmado . . . Casos em dias desde cent&#233;simo caso confirmado . . . Trajet&#243;ria de dispers&#227;o pelo mundo . Acumulado de casos confirmados por pa&#237;s ao longo do tempo . . . Acumulado de mortes por pa&#237;s ao longo do tempo . df_deaths = df_deaths.sort_values(&quot;date&quot;) df_deaths[&quot;date&quot;] = df_deaths[&quot;date&quot;].dt.strftime(&quot;%d-%m&quot;) . . .",
-            "url": "https://leobezerra.github.io/covid19/colab/2020/04/19/america-sul.html",
-            "relUrl": "/colab/2020/04/19/america-sul.html",
-            "date": " • Apr 19, 2020"
+            "url": "https://leobezerra.github.io/covid19/colab/2020/04/20/america-sul.html",
+            "relUrl": "/colab/2020/04/20/america-sul.html",
+            "date": " • Apr 20, 2020"
         }
         
     
