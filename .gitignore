@@ -14,3 +14,4 @@ __pycache__
 env/
 .DS_Store
 .vscode/
+feed.xml
