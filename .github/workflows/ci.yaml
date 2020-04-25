@@ -36,7 +36,11 @@ jobs:
       run: |
         sudo chmod -R 777 _site/
         cp CNAME _site/ 2>/dev/null || :
-
+      
+    - name: removing feed file
+      run: |
+        rm _site/feed.xml 2>/dev/null || :
+      
     - name: Deploy
       if: github.event_name	== 'push'
       uses: peaceiris/actions-gh-pages@v3
